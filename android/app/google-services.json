@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "633713566717",
+    "firebase_url": "https://topicos-8bff9.firebaseio.com",
+    "project_id": "topicos-8bff9",
+    "storage_bucket": "topicos-8bff9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633713566717:android:6c9184af901c7947e1af94",
+        "android_client_info": {
+          "package_name": "com.example.practica2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "633713566717-ir15hs1e1alsfrtad2gr13h0fnv7gp64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7vJCWnXvK4e3HVLs-3Z-QWef1TRDZqN4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "633713566717-ir15hs1e1alsfrtad2gr13h0fnv7gp64.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
