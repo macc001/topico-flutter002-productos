@@ -1,22 +1,27 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:practica2/src/models/producto.models.dart';
 
-class ProductoProvider {
-  Map<String, String> header = {"Content-Type": "application/json"};
-  final String _url = "https://topicos-8bff9.firebaseio.com";
+class ProductoProvider with ChangeNotifier {
+  DatabaseReference itemRef;
+  List<ProductoModel> items = List();
+
+  ProductoProvider() {
+    final FirebaseDatabase database = FirebaseDatabase.instance;
+    itemRef = database.reference().child('productos');
+    itemRef.onChildChanged.listen(_onEntryChanged);
+    this.getProducto(1, 5);
+  }
+
+  _onEntryChanged(Event event) {
+    print("cambios");
+    //  this.getProducto(1, 5);
+  }
 
   Future<List<ProductoModel>> getProducto(int start, int cant) async {
-    final String url = '$_url/productos.json';
-    final resp2 = await http.get(url, headers: header);
-    final List<ProductoModel> productos = new List();
-    final Map<String, dynamic> decodedData = json.decode(resp2.body);
-    if (decodedData == null) return [];
-    decodedData.forEach((id, prod) {
-      final prodTemp = ProductoModel.fromJson(prod);
-      prodTemp.id = id;
-      productos.add(prodTemp);
-    });
-    return productos;
+    for (int i = 0; i < 10; i++) {
+      // items.add(new ProductoModel({id:"12"});
+    }
+    return items;
   }
 }
