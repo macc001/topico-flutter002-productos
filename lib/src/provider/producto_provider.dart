@@ -1,27 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:practica2/src/models/product.model.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:practica2/src/models/producto.models.dart';
 
 class ProductoProvider with ChangeNotifier {
+  List<ProductModel> items = List();
+  ProductModel item;
   DatabaseReference itemRef;
-  List<ProductoModel> items = List();
 
   ProductoProvider() {
+    item = ProductModel("", 0, "", "", 0);
     final FirebaseDatabase database = FirebaseDatabase.instance;
     itemRef = database.reference().child('productos');
-    itemRef.onChildChanged.listen(_onEntryChanged);
-    this.getProducto(1, 5);
+    itemRef.onChildAdded.listen(_onAdded);
+    itemRef.onChildChanged.listen(_onChanged);
+    itemRef.onChildRemoved.listen(_onDeleted);
   }
 
-  _onEntryChanged(Event event) {
-    print("cambios");
-    //  this.getProducto(1, 5);
+  _onAdded(Event event) {
+    items.add(ProductModel.fromSnapshot(event.snapshot));
+    notifyListeners();
   }
 
-  Future<List<ProductoModel>> getProducto(int start, int cant) async {
-    for (int i = 0; i < 10; i++) {
-      // items.add(new ProductoModel({id:"12"});
-    }
-    return items;
+  _onChanged(Event event) {
+    var old = items.singleWhere((entry) {
+      return entry.id == event.snapshot.key;
+    });
+    items[items.indexOf(old)] = ProductModel.fromSnapshot(event.snapshot);
+    notifyListeners();
+  }
+
+  _onDeleted(Event event) {
+    var old = items.singleWhere((entry) {
+      return entry.id == event.snapshot.key;
+    });
+    items.removeAt(items.indexOf(old));
+    notifyListeners();
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:practica2/src/pages/productos_page.dart';
+import 'package:practica2/src/pages/producto_page.dart';
+import 'package:practica2/src/pages/product_page.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -9,6 +10,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Center(
         child: ProductoPage(),
+        // child: Product(),
       ),
     );
   }
