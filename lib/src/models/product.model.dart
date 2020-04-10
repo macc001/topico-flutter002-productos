@@ -2,10 +2,10 @@ import 'package:firebase_database/firebase_database.dart';
 
 class ProductModel {
   String id;
-  double cantidad;
+  num cantidad;
   String descripcion;
   String nombre;
-  double precio;
+  num precio;
 
   ProductModel(
       this.id, this.cantidad, this.descripcion, this.nombre, this.precio);

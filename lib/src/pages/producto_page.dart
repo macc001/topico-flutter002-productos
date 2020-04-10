@@ -13,35 +13,40 @@ class _ProductoPageState extends State<ProductoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(
-            Icons.add_shopping_cart,
-            color: Colors.white,
-            size: 35,
-          ),
-          onPressed: null,
-        ),
-        title: Text('Productos'),
-        backgroundColor: Colors.red,
-        centerTitle: true,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.attach_money,
-              color: Colors.white,
-              size: 35,
-            ),
-            onPressed: null,
-          ),
-        ],
-      ),
-      body: ChangeNotifierProvider<ProductoProvider>(
+      appBar: appBar(),
+      body: ChangeNotifierProvider(
         create: (BuildContext context) => ProductoProvider(),
         child: ListaProducto(),
       ),
     );
   }
+
+  Widget appBar() {
+    return AppBar(
+      leading: IconButton(
+        icon: Icon(
+          Icons.add_shopping_cart,
+          color: Colors.white,
+          size: 35,
+        ),
+        onPressed: null,
+      ),
+      title: Text('Productos'),
+      backgroundColor: Colors.red,
+      centerTitle: true,
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(
+            Icons.attach_money,
+            color: Colors.white,
+            size: 35,
+          ),
+          onPressed: null,
+        ),
+      ],
+    );
+  }
+  //
 }
 
 class ListaProducto extends StatefulWidget {
@@ -57,7 +62,6 @@ class _ListaProductoState extends State<ListaProducto> {
     return Scaffold(
       body: Consumer<ProductoProvider>(
         builder: (context, ProductoProvider value, Widget child) {
-          print(value.items.length);
           return ListView.builder(
             itemCount: value.items.length,
             itemBuilder: (context, int index) {
